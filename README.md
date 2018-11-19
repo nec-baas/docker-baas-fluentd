@@ -4,23 +4,23 @@ NECモバイルバックエンド基盤 : fluentd Dockerfile
 NEC モバイルバックエンド基盤にて使用可能な、
 fluentd の Docker イメージを作成するための Dockerfile です。
 
-以下2つのイメージを含みます。
+以下のイメージを含みます。
 
-* necbaas/fluentd-plugin-mongo: fluentd に fluent-plugin-mongo を追加したもの
-* necbaas/baas-fluentd: BaaSサーバ設定付き fluentd
+* necbaas/baas-fluentd
 
 necbaas/baas-fluentd は、BaaS関連のログを MongoDB に流し込む
 ように設定されます。
 
 fluentd のポート番号として TCP/24224 ポートが EXPOSE されます。
 
+本 Dockerfile は [docker-fluentd-mongo](https://github.com/nec-baas/docker-fluentd-mongo) に依存しています。
+
 Docker イメージの生成
 ---------------------
 
 以下手順で Docker イメージが作成されます。
 
-    $ (cd fluentd-plugin-mongo && make image)
-    $ (cd baas-fluentd && make image)
+    $ make image
 
 Docker イメージ実行時の環境変数
 -------------------------------
