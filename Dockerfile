@@ -16,4 +16,5 @@ RUN chmod -R ugo+rw /fluentd /tmp
 
 ENTRYPOINT ["/fluentd/bootstrap.sh"]
 
-CMD /fluentd/bootstrap.sh
+CMD [""]
+
