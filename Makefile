@@ -9,7 +9,7 @@ rmi:
 	docker image rm $(NAME)
 
 bash:
-	docker container run -it --rm $(NAME) /bin/bash
+	docker container run -it --rm --entrypoint /bin/bash $(NAME)
 
 start:
 	docker container run -d $(PORT_OPTS) $(VOLUME_OPTS) $(NAME)

@@ -1,5 +1,11 @@
 FROM necbaas/fluentd-plugin-mongo
 
+# install envsubst
+RUN apk --no-cache add libintl \
+    && apk --no-cache add --virtual .gettext gettext \
+    && cp /usr/bin/envsubst /usr/local/bin/envsubst \
+    && apk del .gettext
+
 RUN mkdir -p /fluentd/etc/conf.d /fluentd/plugins
 
 COPY prepare.template.rb /fluentd/
