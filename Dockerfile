@@ -8,7 +8,7 @@ RUN apk --no-cache add libintl \
 
 RUN mkdir -p /fluentd/etc/conf.d /fluentd/plugins
 
-COPY prepare.template.rb /fluentd/
+COPY create_user.template.rb /fluentd/
 
 COPY bootstrap.sh /fluentd/
 RUN chmod +x /fluentd/bootstrap.sh

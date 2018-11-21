@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 require 'mongo'
 
-puts("prepare.rb start.")
+puts("create_user.rb start.")
 
 client_host = ['$CLIENT_HOST']
 user = '$MONGO_USERNAME'
@@ -13,9 +13,10 @@ client_options = {
   password: password
 }
 
-# baas_log データベースを作成
 begin
   client = Mongo::Client.new(client_host, client_options)
+
+  # baas_log データベースを作成
   db = client.use('baas_log')
 
   # ユーザを追加する
@@ -35,4 +36,4 @@ rescue StandardError => err
   puts(err)
 end
 
-puts("prepare.rb end.")
+puts("create_user.rb end.")

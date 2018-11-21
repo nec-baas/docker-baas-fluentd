@@ -11,11 +11,11 @@ export FLUSH_INTERVAL=${FLUSH_INTERVAL:-10s}
 
 if [ -z "$MONGO_SERVERS" ]; then
     echo "Not ReplicaSet"
-    export CLIENT_HOST=${MONGO_HOST}:${MONGO_PORT}  # for prepare.rb
+    export CLIENT_HOST=${MONGO_HOST}:${MONGO_PORT}  # for create_user.rb
     TEMPLATE=baas.template.conf
 else
     echo "Use ReplicaSet"
-    export CLIENT_HOST=${MONGO_SERVERS}  # for prepare.rb
+    export CLIENT_HOST=${MONGO_SERVERS}  # for create_user.rb
     TEMPLATE=baas-replset.template.conf
 fi
 
@@ -31,9 +31,9 @@ if [ -n "$MONGO_PASSWORD" ]; then
         | sed "s/#  password/  password/" \
         > /fluentd/etc/conf.d/baas.conf
 
-    echo "Run prepare.rb"
-    envsubst < /fluentd/prepare.template.rb > /tmp/prepare.rb
-    ruby /tmp/prepare.rb
+    echo "Run create_user.rb"
+    envsubst < /fluentd/create_user.template.rb > /tmp/create_user.rb
+    ruby /tmp/create_user.rb
 fi
 
 # Start fluentd
