@@ -36,5 +36,10 @@ if [ -n "$MONGO_PASSWORD" ]; then
     ruby /tmp/create_user.rb
 fi
 
+# Amazon DocumentDB使用時の設定
+if [ "$USE_DB" = "DOCUMENTDB" ]; then
+    sed -i -e 's/  capped/#  capped/' /fluentd/etc/conf.d/baas.conf
+fi
+
 # Start fluentd
 exec fluentd -c /fluentd/etc/${FLUENTD_CONF} -p /fluentd/plugins $FLUENTD_OPT
